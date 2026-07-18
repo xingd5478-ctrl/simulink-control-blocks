@@ -1,0 +1,4 @@
+build_all_blocks.m
+*.asv
+*.autosave
+slprj/
