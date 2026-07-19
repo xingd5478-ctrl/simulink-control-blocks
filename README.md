@@ -20,16 +20,34 @@
   <td><img src="docs/images/demo_lqr_msd_fig1_new.png" width="280"></td>
   <td><img src="docs/images/demo_smc_msd_fig1.png" width="280"></td>
 </tr>
+<tr>
+  <td align="center"><b>Kalman 状态估计</b></td>
+  <td align="center"><b>Notch 50Hz 陷波</b></td>
+  <td></td>
+</tr>
+<tr>
+  <td><img src="docs/images/demo_kalman_msd_fig1.png" width="280"></td>
+  <td><img src="docs/images/demo_notch_filter_fig1.png" width="280"></td>
+  <td></td>
+</tr>
 </table>
 
 ## 快速开始
 
+### 方式一：Library 拖拽（推荐）
+
+打开 `simulink_control_blocks_lib.slx`，12 个积木按分类排列好，直接拖到你的模型里。
+
+### 方式二：命令行
+
 ```matlab
 >> build_all_blocks       % 一键生成全部 12 个 .slx 文件
 >> test_all_blocks        % 运行数学验证（12/12 PASS）
-```
 
-打开任意 `blocks/` 下的 .slx，把里面的积木方块拖到你的 Simulink 模型里，连线，设参数，运行。
+% 一行加载积木
+>> blk = block('PID');    % 返回 'PID_Controller/PID'
+>> add_block(blk, 'mymodel/MyPID');
+```
 
 ## 为什么要用积木库？
 
