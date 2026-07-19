@@ -29,8 +29,8 @@ set_param([mdl '/PID'], 'Kp', '50', 'Ki', '20', 'Kd', '5', ...
     'N', '100', 'UL', '10', 'LL', '-10', 'Kaw', '1');
 
 % 被控对象
-add_block('simulink/Continuous/Transfer Fcn', [mdl '/MSD Plant'], 'Position', [480,75,570,125]);
-set_param([mdl '/MSD Plant'], 'Numerator', '[1]', 'Denominator', '[1 0.5 10]');
+add_block('simulink/Continuous/Transfer Fcn', [mdl '/MSD_Plant'], 'Position', [480,75,570,125]);
+set_param([mdl '/MSD_Plant'], 'Numerator', '[1]', 'Denominator', '[1 0.5 10]');
 
 % 示波器
 add_block('simulink/Sinks/Scope', [mdl '/Scope'], 'Position', [660,75,720,125]);
@@ -39,13 +39,13 @@ set_param([mdl '/Scope'], 'NumInputPorts', '2');
 % 连线
 add_line(mdl, 'Setpoint/1', 'Error/1');
 add_line(mdl, 'Error/1', 'PID/1');
-add_line(mdl, 'PID/1', 'MSD Plant/1');
-add_line(mdl, 'MSD Plant/1', 'Scope/1');
+add_line(mdl, 'PID/1', 'MSD_Plant/1');
+add_line(mdl, 'MSD_Plant/1', 'Scope/1');
 add_line(mdl, 'Setpoint/1', 'Scope/2');
-add_line(mdl, 'MSD Plant/1', 'Error/2');
+add_line(mdl, 'MSD_Plant/1', 'Error/2');
 
 % 信号记录
-ph = get_param([mdl '/MSD Plant'], 'PortHandles');
+ph = get_param([mdl '/MSD_Plant'], 'PortHandles');
 set_param(ph.Outport(1), 'DataLogging', 'on', ...
     'DataLoggingNameMode', 'Custom', 'DataLoggingName', 'y_out');
 
