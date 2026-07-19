@@ -6,10 +6,8 @@
 clear; close all;
 
 % 加载积木
-pid_block = fullfile(fileparts(mfilename('fullpath')), '..', 'blocks', 'controllers', 'PID_Controller.slx');
-if ~exist(pid_block, 'file')
-    error('请先运行 build_all_blocks 生成积木文件');
-end
+blocks_dir = fullfile(fileparts(fileparts(mfilename('fullpath'))), 'blocks');
+load_system(fullfile(blocks_dir, 'controllers', 'PID_Controller.slx'));
 
 mdl = 'demo_pid_msd';
 if bdIsLoaded(mdl), close_system(mdl, 0); end
@@ -25,10 +23,10 @@ add_block('simulink/Math Operations/Sum', [mdl '/Error'], 'Position', [160,80,19
 set_param([mdl '/Error'], 'Inputs', '|+-');
 
 % === 加载积木：PID 控制器 ===
-add_block(pid_block, [mdl '/PID'], 'Position', [280,70,380,130]);
+add_block('PID_Controller/PID', [mdl '/PID'], 'Position', [280,70,380,130]);
 % 设置 Mask 参数
 set_param([mdl '/PID'], 'Kp', '50', 'Ki', '20', 'Kd', '5', ...
-    'N', '100', 'UpperLimit', '10', 'LowerLimit', '-10', 'Kaw', '1');
+    'N', '100', 'UL', '10', 'LL', '-10', 'Kaw', '1');
 
 % 被控对象
 add_block('simulink/Continuous/Transfer Fcn', [mdl '/MSD Plant'], 'Position', [480,75,570,125]);
