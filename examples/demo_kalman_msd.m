@@ -58,3 +58,15 @@ fprintf('Scope 对比真实状态(灰)和估计状态(红虚线)\n');
 
 save_system(mdl,fullfile(fileparts(mfilename('fullpath')),[mdl '.slx']));
 close_system(mdl,0); close_system('Kalman_Filter',0);
+
+%% Auto-save figure
+figs = findall(0,'Type','figure');
+img_dir = fullfile(fileparts(fileparts(mfilename('fullpath'))), 'docs', 'images');
+if ~exist(img_dir,'dir'), mkdir(img_dir); end
+for k = 1:length(figs)
+    if isgraphics(figs(k),'figure')
+        [~,sn] = fileparts(mfilename('fullpath'));
+        exportgraphics(figs(k), fullfile(img_dir, [sn '_fig' num2str(k) '.png']), 'Resolution', 150);
+    end
+end
+fprintf('Image saved: %s\n', sn);

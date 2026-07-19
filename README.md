@@ -7,6 +7,21 @@
 
 12 个可直接拖进 Simulink 模型使用的积木模块。每个都是 **Masked Subsystem**——双击弹出参数对话框，右键 **Look Under Mask** 看内部实现。全部通过数学验证测试。
 
+## Demo 预览
+
+<table>
+<tr>
+  <td align="center"><b>PID 控制 MSD</b></td>
+  <td align="center"><b>LQR 状态反馈</b></td>
+  <td align="center"><b>SMC vs PID</b></td>
+</tr>
+<tr>
+  <td><img src="docs/images/demo_pid_msd_fig1.png" width="280"></td>
+  <td><img src="docs/images/demo_lqr_msd_fig1.png" width="280"></td>
+  <td><img src="docs/images/demo_smc_msd_fig1.png" width="280"></td>
+</tr>
+</table>
+
 ## 快速开始
 
 ```matlab

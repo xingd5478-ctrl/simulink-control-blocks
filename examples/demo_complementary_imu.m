@@ -61,3 +61,15 @@ fprintf('均方根误差: 陀螺仪=%.2fdeg  加速度计=%.2fdeg  融合=%.2fde
 
 save_system(mdl,fullfile(fileparts(mfilename('fullpath')),[mdl '.slx']));
 close_system(mdl,0); close_system('Complementary_Filter',0);
+
+%% Auto-save figure
+figs = findall(0,'Type','figure');
+img_dir = fullfile(fileparts(fileparts(mfilename('fullpath'))), 'docs', 'images');
+if ~exist(img_dir,'dir'), mkdir(img_dir); end
+for k = 1:length(figs)
+    if isgraphics(figs(k),'figure')
+        [~,sn] = fileparts(mfilename('fullpath'));
+        exportgraphics(figs(k), fullfile(img_dir, [sn '_fig' num2str(k) '.png']), 'Resolution', 150);
+    end
+end
+fprintf('Image saved: %s\n', sn);
