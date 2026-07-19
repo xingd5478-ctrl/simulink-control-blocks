@@ -17,7 +17,7 @@
 </tr>
 <tr>
   <td><img src="docs/images/demo_pid_msd_fig1.png" width="280"></td>
-  <td><img src="docs/images/demo_lqr_msd_fig1.png" width="280"></td>
+  <td><img src="docs/images/demo_lqr_msd_fig1_new.png" width="280"></td>
   <td><img src="docs/images/demo_smc_msd_fig1.png" width="280"></td>
 </tr>
 </table>
